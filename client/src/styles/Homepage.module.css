@@ -1,0 +1,22 @@
+.homepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #282c34;
+  color: white;
+}
+
+h2 {
+  margin: 2rem;
+}
+
+p {
+  margin: 1rem;
+}
+
+.begin {
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+}

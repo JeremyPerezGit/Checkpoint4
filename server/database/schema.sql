@@ -25,16 +25,41 @@ CREATE TABLE scores (
 INSERT INTO users (id, username, email, password, is_admin)
 VALUES
 (1, "Pepe", "pepe@gmail.com", "123", true),
-(2, "Pepe2", "pepe2@gmail.com", "123", false);
+(2, "Pepe2", "pepe2@gmail.com", "123", false),
+(3, "Pepe3", "pepe3@gmail.com", "123", false),
+(4, "Pepe4", "pepe4@gmail.com", "123", false),
+(5, "Pepe5", "pepe5@gmail.com", "123", false),
+(6, "Pepe6", "pepe6@gmail.com", "123", false),
+(7, "Pepe7", "pepe7@gmail.com", "123", false),
+(8, "Pepe8", "pepe8@gmail.com", "123", false),
+(9, "Pepe9", "pepe9@gmail.com", "123", false),
+(10, "Pepe10", "pepe10@gmail.com", "123", false),
+(11, "Pepe11", "pepe11@gmail.com", "123", false),
+(12, "Pepe12", "pepe12@gmail.com", "123", false),
+(13, "Pepe13", "pepe13@gmail.com", "123", false),
+(14, "Pepe14", "pepe14@gmail.com", "123", false),
+(15, "Pepe15", "pepe15@gmail.com", "123", false),
+(16, "Pepe16", "pepe16@gmail.com", "123", false);
 
 INSERT INTO scores (user_id, time_taken)
 VALUES
 (1, 10),
-(1, 20),
-(1, 30),
-(2, 10),
 (2, 20),
-(2, 30);
+(3, 30),
+(4, 40),
+(5, 50),
+(6, 60),
+(7, 70),
+(8, 80),
+(9, 90),
+(10, 100),
+(11, 110),
+(12, 120),
+(13, 130),
+(14, 140),
+(15, 160),
+(15, 150),
+(16, 20);
 INSERT INTO champions (name, image_url)
 VALUES
 ('Aatrox', 'https://guesschamp.com/lol/aatrox.jpg'),

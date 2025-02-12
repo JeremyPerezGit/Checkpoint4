@@ -11,6 +11,25 @@ const browse: RequestHandler = async (req, res, next) => {
   }
 };
 
+const readTopTen: RequestHandler = async (req, res, next) => {
+  try {
+    const score = await scoreRepository.readTopTen();
+    res.json(score);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const readUserPlace: RequestHandler = async (req, res, next) => {
+  try {
+    const user_id = Number(req.params.id);
+    const score = await scoreRepository.readUserPlace(user_id);
+    res.json(score);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const add: RequestHandler = async (req, res, next) => {
   try {
     const { user_id, time_taken } = req.body;
@@ -54,4 +73,4 @@ const edit: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, add, edit };
+export default { browse, readTopTen, readUserPlace, add, edit };

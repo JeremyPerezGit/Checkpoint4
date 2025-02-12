@@ -17,6 +17,8 @@ router.delete("/api/users/:id", usersActions.destroy);
 import scoreActions from "./modules/scores/scoreActions";
 
 router.get("/api/scores", scoreActions.browse);
+router.get("/api/scores/top", scoreActions.readTopTen);
+router.get("/api/scores/:id", scoreActions.readUserPlace);
 router.put("/api/scores/:id", scoreActions.edit);
 router.post("/api/scores", scoreActions.add);
 

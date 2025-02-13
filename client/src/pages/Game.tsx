@@ -9,6 +9,8 @@ export default function Game() {
   >([]);
   const [inputValue, setInputValue] = useState("");
   const [foundChampions, setFoundChampions] = useState(new Set());
+  const [time, setTime] = useState(0);
+  const [isStarted, setIsStarted] = useState(false);
 
   const fetchChampions = useCallback(async () => {
     try {
@@ -26,6 +28,16 @@ export default function Game() {
   }, [fetchChampions]);
 
   useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isStarted) {
+      interval = setInterval(() => {
+        setTime((prev) => prev + 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isStarted]);
+
+  useEffect(() => {
     const champion = champions.find(
       (champ) => champ.name.toLowerCase() === inputValue.toLowerCase(),
     );
@@ -36,15 +48,25 @@ export default function Game() {
       );
       setInputValue("");
     }
-  }, [inputValue, champions, foundChampions]);
+
+    if (foundChampions.size === champions.length && champions.length > 0) {
+      alert(`Bravo ! Vous avez terminé en ${time} secondes.`);
+    }
+  }, [inputValue, champions, foundChampions, time]);
 
   return (
     <>
+      <section className={styles.chrono}>Chrono : {time}</section>
       <section>
         <input
           type="text"
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={(e) => {
+            setInputValue(e.target.value);
+            if (!isStarted && e.target.value.length > 0) {
+              setIsStarted(true);
+            }
+          }}
           placeholder="Nom du champion"
           id={styles.nameInput}
         />

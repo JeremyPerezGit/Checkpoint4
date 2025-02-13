@@ -33,6 +33,18 @@ export default function Admin() {
     setNewChampion({ ...newChampion, [e.target.name]: e.target.value });
   };
 
+  const handleEditChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (editingId !== null) {
+      setChampions(
+        champions.map((champion) =>
+          champion.id === editingId
+            ? { ...champion, [e.target.name]: e.target.value }
+            : champion,
+        ),
+      );
+    }
+  };
+
   const handleAddSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -45,6 +57,29 @@ export default function Admin() {
       fetchChampions();
     } catch (err) {
       console.error("Erreur lors de l'ajout du champion:", err);
+    }
+  };
+
+  const handleEditSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (editingId !== null) {
+      try {
+        const championToUpdate = champions.find(
+          (champ) => champ.id === editingId,
+        );
+        if (championToUpdate) {
+          await axios.put(
+            `${import.meta.env.VITE_API_URL}/api/champions/${editingId}`,
+            championToUpdate,
+          );
+          setNewChampion({ name: "", image_url: "" });
+          setIsAdding(false);
+          setEditingId(null); // Optionnel : Quitter le mode édition
+          fetchChampions();
+        }
+      } catch (err) {
+        console.error("Erreur lors de la modification du champion:", err);
+      }
     }
   };
 
@@ -95,18 +130,27 @@ export default function Admin() {
           {isAdding ? "Annuler" : "+ Ajouter"}
         </button>
       </section>
+
       <section className={styles.editSection}>
         {champions.map((champion) => (
           <section key={champion.id} className={styles.championsList}>
             {editingId === champion.id ? (
-              <>
-                <input type="text" defaultValue={champion.name} />
-                <input type="text" defaultValue={champion.image_url} />
-                <button
-                  type="button"
-                  className={styles.saveButton}
-                  onClick={() => setEditingId(null)}
-                >
+              <form className={styles.editForm} onSubmit={handleEditSubmit}>
+                <input
+                  type="text"
+                  name="name"
+                  value={champion.name}
+                  onChange={handleEditChange}
+                  id={styles.championNameEdit}
+                />
+                <input
+                  type="text"
+                  name="image_url"
+                  value={champion.image_url}
+                  onChange={handleEditChange}
+                  id={styles.championImgEdit}
+                />
+                <button type="submit" className={styles.saveButton}>
                   Enregistrer
                 </button>
                 <button
@@ -116,7 +160,7 @@ export default function Admin() {
                 >
                   Annuler
                 </button>
-              </>
+              </form>
             ) : (
               <>
                 <p>{champion.name}</p>

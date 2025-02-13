@@ -21,7 +21,8 @@ class ChampionRepository {
   async readAll() {
     const [rows] = await databaseClient.query<Rows>(
       `SELECT * 
-            FROM champions`,
+      FROM champions
+      ORDER BY name ASC`,
     );
     return rows as Champions[];
   }

@@ -36,7 +36,7 @@ export default function Scoreboard() {
   const fetchUserRank = useCallback(async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/scores/2`,
+        `${import.meta.env.VITE_API_URL}/api/scores/15`,
       );
       return response.data;
     } catch (error) {

@@ -1,0 +1,30 @@
+.scoreboard {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+  padding: 10px;
+  text-align: center;
+  color: whitesmoke;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 2rem;
+}
+
+.score {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.userScore {
+  border: 2px solid #f0f0f0;
+  border-radius: 8px;
+}

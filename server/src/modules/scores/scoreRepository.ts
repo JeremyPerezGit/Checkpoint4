@@ -22,9 +22,45 @@ class ScoreRepository {
   async readAll() {
     const [rows] = await databaseClient.query<Rows>(
       `SELECT * 
-            FROM scores`,
+      FROM scores
+      ORDER BY time_taken ASC`,
     );
     return rows as Scores[];
+  }
+
+  async readTopTen() {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT s.* , u.username
+      FROM scores  AS s
+      LEFT JOIN users AS u
+      ON s.user_id = u.id
+      ORDER BY time_taken ASC
+      LIMIT 10`,
+    );
+    return rows;
+  }
+
+  async readUserPlace(user_id: number) {
+    const [score] = await databaseClient.query<Rows>(
+      `SELECT * 
+      FROM scores
+      WHERE user_id = ?
+      ORDER BY time_taken
+      LIMIT 1`,
+      [user_id],
+    );
+
+    if (!score.length) {
+      return { score: null, place: null };
+    }
+
+    const [place] = await databaseClient.query<Rows>(
+      `SELECT COUNT(*) +1 AS place
+      FROM scores
+      WHERE time_taken < ?`,
+      [score[0].time_taken],
+    );
+    return { ...score[0], place: place[0].place };
   }
 
   async update(id: number, time_taken: number): Promise<number> {

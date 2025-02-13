@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import ConnectionPage from "./pages/ConnectionPage";
 import Homepage from "./pages/Homepage";
+import Scoreboard from "./pages/Scoreboard";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
     children: [
       { path: "", element: <Homepage /> },
       { path: "login", element: <ConnectionPage /> },
+      { path: "scoreboard", element: <Scoreboard /> },
     ],
   },
 ]);

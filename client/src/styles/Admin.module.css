@@ -1,0 +1,61 @@
+.adminPage {
+  color: whitesmoke;
+  padding: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+#champs {
+  font-size: 1.2rem;
+  color: rgb(211, 76, 76);
+}
+
+.championsList {
+  display: grid;
+  grid-template-columns: 20% 30% 10% 10%;
+}
+
+.addSection {
+  display: grid;
+  grid-template-columns: 60% 10%;
+  align-items: center;
+}
+
+.addForm {
+  display: flex;
+  flex-direction: row;
+}
+
+#championName {
+  width: 33%;
+  margin-top: .2rem;
+}
+#championImg {
+  width: 50%;
+  margin-top: .2rem;
+}
+#addChampionButton {
+  width: 17%;
+  border-radius: 10px;
+  height: 2rem;
+}
+
+#editButton,
+#deleteButton,
+#addButton {
+  width: auto;
+  height: 2rem;
+  margin: .5rem;
+  cursor: pointer;
+  align-items: center;
+  border-radius: 10px;
+}
+
+#championsNumber {
+  font-size: .8rem;
+  color: rgb(0, 0, 0);
+}

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styles from "../styles/ConnectionPage.module.css";
 
 export default function ConnectionPage() {
@@ -36,7 +37,7 @@ export default function ConnectionPage() {
               <input type="password" placeholder="mot de passe" />
             </section>
             <button type="submit" className={styles.button}>
-              Connexion
+              <NavLink to="/admin">Connexion</NavLink>
             </button>
           </section>
         </section>

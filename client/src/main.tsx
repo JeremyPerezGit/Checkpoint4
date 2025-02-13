@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import App from "./App";
+import Admin from "./pages/Admin";
 import ConnectionPage from "./pages/ConnectionPage";
 import Homepage from "./pages/Homepage";
 import Scoreboard from "./pages/Scoreboard";
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
       { path: "", element: <Homepage /> },
       { path: "login", element: <ConnectionPage /> },
       { path: "scoreboard", element: <Scoreboard /> },
+      { path: "admin", element: <Admin /> },
     ],
   },
 ]);

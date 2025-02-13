@@ -1,0 +1,21 @@
+#nameInput {
+  border-radius: 1rem;
+  border: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 2px 4px 3px 0px inset, rgba(0, 0, 0, 0.3)
+    2px 1px 8px 0px inset;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  translate: -50%;
+}
+
+.championImg {
+  width: 150px;
+  margin: 0;
+}
+
+.championsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

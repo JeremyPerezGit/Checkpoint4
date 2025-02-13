@@ -56,9 +56,18 @@ export default function Game() {
     }
   }, [inputValue, champions, foundChampions, time]);
 
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    if (seconds < 60) {
+      return `${seconds}`;
+    }
+    return `${minutes}:${secs < 10 ? `0${secs}` : secs}`;
+  };
+
   return (
     <>
-      <section className={styles.chrono}>Chrono : {time}</section>
+      <section className={styles.chrono}>Chrono : {formatTime(time)}</section>
       <section>
         <input
           type="text"

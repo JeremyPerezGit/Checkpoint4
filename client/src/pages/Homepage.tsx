@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styles from "../styles/Homepage.module.css";
 
 export default function Homepage() {
@@ -9,10 +10,12 @@ export default function Homepage() {
         Au plus vite tu les trouves tous, au mieux tu seras placé dans le
         classement !
       </p>
-      <p>Connecte toi à ton compte pour enregistrer ton score</p>
-      <button type="button" className={styles.begin}>
-        Commencer
-      </button>
+      <p>Connecte toi à ton compte pour enregistrer ton score</p>{" "}
+      <NavLink to="/game">
+        <button type="button" className={styles.begin}>
+          Commencer
+        </button>
+      </NavLink>
     </section>
   );
 }

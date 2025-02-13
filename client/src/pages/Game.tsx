@@ -11,6 +11,7 @@ export default function Game() {
   const [foundChampions, setFoundChampions] = useState(new Set());
   const [time, setTime] = useState(0);
   const [isStarted, setIsStarted] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
 
   const fetchChampions = useCallback(async () => {
     try {
@@ -29,13 +30,13 @@ export default function Game() {
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
-    if (isStarted) {
+    if (isStarted && !isFinished) {
       interval = setInterval(() => {
         setTime((prev) => prev + 1);
       }, 1000);
     }
     return () => clearInterval(interval);
-  }, [isStarted]);
+  }, [isStarted, isFinished]);
 
   useEffect(() => {
     const champion = champions.find(
@@ -50,6 +51,7 @@ export default function Game() {
     }
 
     if (foundChampions.size === champions.length && champions.length > 0) {
+      setIsFinished(true);
       alert(`Bravo ! Vous avez terminé en ${time} secondes.`);
     }
   }, [inputValue, champions, foundChampions, time]);
